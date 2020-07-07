@@ -57,7 +57,8 @@ public class UsuarioController {
             usuario.setImagen_de_perfil(imageBytes);
         }
         usuario.setUsuario(username);
-        return new ResponseEntity(uService.save(usuario), HttpStatus.OK);
+        uService.save(usuario);
+        return new ResponseEntity("User created", HttpStatus.OK);
     }
     
     
