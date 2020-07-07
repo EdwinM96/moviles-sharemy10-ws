@@ -40,12 +40,12 @@ public class Comentario {
     Date fechaComentario;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn (name = "materia_id")
-    Integer materiaId;
+    @JoinColumn (name = "actividad_id")
+    Actividad actividad;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="usuario_id")
-    Integer usuarioId;
+    Usuario usuario;
 
     public Integer getComentarioId() {
         return comentarioId;
@@ -71,21 +71,24 @@ public class Comentario {
         this.fechaComentario = fechaComentario;
     }
 
-    public Integer getMateriaId() {
-        return materiaId;
+    public Actividad getActividad() {
+        return actividad;
     }
 
-    public void setMateriaId(Integer materiaId) {
-        this.materiaId = materiaId;
+    public void setActividad(Actividad actividad) {
+        this.actividad = actividad;
     }
 
-    public Integer getUsuarioId() {
-        return usuarioId;
+    
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUsuarioId(Integer usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
+
     
     
 }

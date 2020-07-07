@@ -50,7 +50,7 @@ public class Materia {
     @Column(name="carrera")
     String carrera;
     
-    @OneToMany(mappedBy = "materiaId")
+    @OneToMany(mappedBy = "materia")
     List<Actividad> actividades;
 
     public Integer getMateriaId() {

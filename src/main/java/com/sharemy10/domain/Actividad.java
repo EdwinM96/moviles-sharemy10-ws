@@ -41,7 +41,7 @@ public class Actividad {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="materia_id")
-    Integer materiaId;
+    Materia materia;
     
     @Column(name="tipo_de_actividad")
     String tipoDeActividad;
@@ -70,13 +70,14 @@ public class Actividad {
         this.fechaDeEvaluacion = fechaDeEvaluacion;
     }
 
-    public Integer getMateriaId() {
-        return materiaId;
+    public Materia getMateria() {
+        return materia;
     }
 
-    public void setMateriaId(Integer materiaId) {
-        this.materiaId = materiaId;
+    public void setMateria(Materia materia) {
+        this.materia = materia;
     }
+
 
     public String getTipoDeActividad() {
         return tipoDeActividad;
