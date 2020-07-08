@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -28,7 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author HP PC
  */
 
-@Controller
+@RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
     
@@ -36,12 +37,11 @@ public class UsuarioController {
     UsuarioService uService;
     
     @PostMapping(path = "/save", produces = MediaType.APPLICATION_JSON_VALUE )
-    @ResponseBody
     public ResponseEntity<?> saveUsuario(@RequestParam("usuario") String username, @RequestParam("email") String email,
              @RequestParam("password") String pass, @RequestParam("nombre") String nombre, @RequestParam("apellido") String apellido,
              @RequestParam(value= "imagenDePerfil", required = false) MultipartFile imagen, HttpServletRequest request, HttpServletResponse response) throws IOException{
-        if(uService.usernameIsAvailable(username)){
-            return new ResponseEntity("Username is not available", HttpStatus.NOT_ACCEPTABLE);
+        if(!uService.usernameAndEmailIsAvailable(username, email)){
+            return new ResponseEntity("Username or email are not available", HttpStatus.CONFLICT);
         }
         Usuario usuario = new Usuario();
         usuario.setEmail(email);
@@ -57,13 +57,12 @@ public class UsuarioController {
             usuario.setImagen_de_perfil(imageBytes);
         }
         usuario.setUsuario(username);
-        uService.save(usuario);
-        return new ResponseEntity("User created", HttpStatus.OK);
+        Usuario us = uService.save(usuario);
+        return new ResponseEntity(us, HttpStatus.OK);
     }
     
     
     @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public ResponseEntity<?> logearUsuario(@RequestParam("usuario") String username, @RequestParam("password") String password){
         Usuario usuario = new Usuario();
         usuario.setUsuario(username);

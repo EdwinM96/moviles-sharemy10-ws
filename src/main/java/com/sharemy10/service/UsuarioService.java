@@ -39,11 +39,17 @@ public class UsuarioService implements UserDetailsService {
     }
     
     public Usuario save(Usuario usuario){
+        usuario.setContribuciones(1);
         return usRepo.save(usuario);
     }
     
-    public boolean usernameIsAvailable(String username){
-        return (usRepo.findOneByUsuario(username)!=null);
+    public boolean usernameAndEmailIsAvailable(String username, String email){
+        Usuario us = usRepo.findOneByUsuario(username);
+        Usuario usEmail = usRepo.findOneByEmail(email);
+        if(us == null && usEmail == null){
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -21,4 +21,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     
     public Usuario findOneByUsuario(String usuario);
     
+    public Usuario findOneByEmail(String email);
+    
 }

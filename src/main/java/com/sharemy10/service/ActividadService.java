@@ -30,6 +30,10 @@ public class ActividadService {
         return actiRepo.findByMateria(materia);
     }
     
+    public Actividad findOne(Integer id){
+        return actiRepo.findById(id).get();
+    }
+    
     public Actividad saveActividad(Actividad actividad){
         return actiRepo.saveAndFlush(actividad);
     }

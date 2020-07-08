@@ -12,6 +12,9 @@ import com.sharemy10.domain.*;
 import com.sharemy10.repository.UsuarioRepository;
 import java.util.List;
 import com.sharemy10.domain.*;
+import java.time.Instant;
+import java.util.Calendar;
+import java.util.Date;
 import javax.transaction.Transactional;
 /**
  *
@@ -40,6 +43,7 @@ public class ComentarioService {
         Usuario usuario = usuarioRepo.findById(comentario.getUsuario().getUsuarioId()).get();
         usuario.setContribuciones(usuario.getContribuciones()+1);
         usuarioRepo.save(usuario);
+        comentario.setFechaComentario(Calendar.getInstance().getTime());
         return comRepo.saveAndFlush(comentario);
     }
     
