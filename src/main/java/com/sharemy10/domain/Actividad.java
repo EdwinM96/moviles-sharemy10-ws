@@ -5,6 +5,7 @@
  */
 package com.sharemy10.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,6 +36,7 @@ public class Actividad {
     @Column(name="nombre")
     String nombre;
     
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm a z")
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="fecha_de_evaluacion")
     Date fechaDeEvaluacion;

@@ -5,6 +5,7 @@
  */
 package com.sharemy10.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -43,6 +44,7 @@ public class Materia {
     @Column(name="acronimo")
     String acronimo;
     
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     @Column(name="fecha_de_finalizacion")
     Date fechaDeFinalizacion;
