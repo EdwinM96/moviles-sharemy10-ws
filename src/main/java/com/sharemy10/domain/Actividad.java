@@ -35,7 +35,7 @@ public class Actividad {
     @Column(name="nombre")
     String nombre;
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name="fecha_de_evaluacion")
     Date fechaDeEvaluacion;
     
@@ -45,6 +45,7 @@ public class Actividad {
     
     @Column(name="tipo_de_actividad")
     String tipoDeActividad;
+    
 
     public Integer getActividadId() {
         return actividadId;
