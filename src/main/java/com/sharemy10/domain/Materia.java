@@ -52,8 +52,6 @@ public class Materia {
     @Column(name="carrera")
     String carrera;
     
-    @OneToMany(mappedBy = "materia")
-    List<Actividad> actividades;
 
     public Integer getMateriaId() {
         return materiaId;
@@ -111,13 +109,6 @@ public class Materia {
         this.carrera = carrera;
     }
 
-    public List<Actividad> getActividades() {
-        return actividades;
-    }
-
-    public void setActividades(List<Actividad> actividades) {
-        this.actividades = actividades;
-    }
     
     
     
